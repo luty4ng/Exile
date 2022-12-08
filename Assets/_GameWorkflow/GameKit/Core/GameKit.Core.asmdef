@@ -1,0 +1,16 @@
+{
+    "name": "GameKit.Core",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4987dd8a718086f42b6848a4c65b833a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
