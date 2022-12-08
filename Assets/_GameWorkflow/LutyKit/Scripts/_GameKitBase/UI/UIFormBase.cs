@@ -92,7 +92,6 @@ public abstract class UIFormBase : UIFormLogic
         gameObject.GetOrAddComponent<GraphicRaycaster>();
         if (m_MasterAnimator == null)
             m_MasterAnimator = gameObject.GetOrAddComponent<Animator>();
-        // InternalSetVisible(false);
     }
 
     public static void SetMainFont(Font mainFont)
