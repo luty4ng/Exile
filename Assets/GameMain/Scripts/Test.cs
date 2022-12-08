@@ -8,6 +8,6 @@ public class Test : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-            GameKitCenter.UI.OpenUIForm("Canvas", "Default");
+            Log.Info(1111);
     }
 }

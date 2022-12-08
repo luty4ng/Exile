@@ -184,36 +184,23 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
-  - name: Default
-    path: Assets/GameMain/Scenes/Default.unity
   - name: LinkingGame
     path: Assets/GameMain/Scenes/LinkingGame.unity
-  - name: GameKitDemo_UI
-    path: Assets/_GameWorkflow/GameKit/Demo/UI/GameKitDemo_UI.unity
+  - name: Default
+    path: Assets/GameMain/Scenes/Default.unity
   - name: Default
     path: Assets/Scenes/Default.unity
-  - name: GameKitDemo_ObjectPool
-    path: Assets/_GameWorkflow/GameKit/Demo/ObjectPool/GameKitDemo_ObjectPool.unity
+  - name: Default
+    path: Assets/_GameWorkflow/Template/Scenes/Default.unity
+  - name: Default
+    path: Assets/_GameWorkflow/QuickKit/Template/Scenes/Default.unity
   - name: GameLauncher
     path: Assets/_GameWorkflow/GameKit/GameLauncher.unity
+  - name: Default
+    path: Assets/_GameWorkflow/LutyKit/GameMainTemplate/Scenes/Default.unity
   - name: GameKitDemo_Fsm
     path: Assets/_GameWorkflow/GameKit/Demo/Fsm/GameKitDemo_Fsm.unity
-  - name: EmbeddedGraph
-    path: Assets/_GameWorkflow/Plugins/NodeGraphProcessor/Samples/Examples/Scenes/EmbeddedGraph.unity
-  - name: RuntimeGraph
-    path: Assets/_GameWorkflow/Plugins/NodeGraphProcessor/Samples/Examples/Scenes/RuntimeGraph.unity
-  - name: Conditional Graph
-    path: Assets/_GameWorkflow/Plugins/NodeGraphProcessor/Samples/Examples/Scenes/Conditional
-      Graph.unity
-  - name: SubScene
-    path: Assets/_GameWorkflow/YooAsset/Samples/Basic Sample/GameRes/Scene/SubScene.unity
-  - name: GameScene2
-    path: Assets/_GameWorkflow/YooAsset/Samples/Basic Sample/GameRes/Scene/GameScene2.unity
-  - name: GameScene1
-    path: Assets/_GameWorkflow/YooAsset/Samples/Basic Sample/GameRes/Scene/GameScene1.unity
-  - name: Boot
-    path: Assets/_GameWorkflow/YooAsset/Samples/Basic Sample/Boot.unity
-  - name: Main
-    path: Assets/GamePrototype/UntitledPortalGame/Scenes/Main.unity
-  - name: SampleScene
-    path: Assets/Scenes/SampleScene.unity
+  - name: GameKitDemo_ObjectPool
+    path: Assets/_GameWorkflow/GameKit/Demo/ObjectPool/GameKitDemo_ObjectPool.unity
+  - name: GameKitDemo_TaskPool
+    path: Assets/_GameWorkflow/GameKit/Demo/TaskPool/GameKitDemo_TaskPool.unity

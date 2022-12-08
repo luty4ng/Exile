@@ -75,7 +75,6 @@ namespace UnityGameKit.Runtime
         private RuntimeMemoryInformationWindow<ScriptableObject> m_RuntimeMemoryScriptableObjectInformationWindow = new RuntimeMemoryInformationWindow<ScriptableObject>();
         private ObjectPoolInformationWindow m_ObjectPoolInformationWindow = new ObjectPoolInformationWindow();
         private ReferencePoolInformationWindow m_ReferencePoolInformationWindow = new ReferencePoolInformationWindow();
-        private NetworkInformationWindow m_NetworkInformationWindow = new NetworkInformationWindow();
         private SettingsWindow m_SettingsWindow = new SettingsWindow();
         private OperationsWindow m_OperationsWindow = new OperationsWindow();
 
@@ -206,7 +205,6 @@ namespace UnityGameKit.Runtime
             RegisterDebuggerWindow("Profiler/Memory/ScriptableObject", m_RuntimeMemoryScriptableObjectInformationWindow);
             RegisterDebuggerWindow("Profiler/Object Pool", m_ObjectPoolInformationWindow);
             RegisterDebuggerWindow("Profiler/Reference Pool", m_ReferencePoolInformationWindow);
-            RegisterDebuggerWindow("Profiler/Network", m_NetworkInformationWindow);
             RegisterDebuggerWindow("Other/Settings", m_SettingsWindow);
             RegisterDebuggerWindow("Other/Operations", m_OperationsWindow);
 
