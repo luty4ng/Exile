@@ -137,3 +137,31 @@ MonoBehaviour:
       PackRuleName: PackDirectory
       FilterRuleName: CollectAll
       AssetTags: 
+    - CollectPath: Assets/GameMain/Prefabs/Graph.prefab
+      CollectorGUID: 173f73941706f4e459825001464fbd78
+      CollectorType: 0
+      AddressRuleName: AddressByFileName
+      PackRuleName: PackDirectory
+      FilterRuleName: CollectAll
+      AssetTags: 
+    - CollectPath: Assets/GameMain/Prefabs/Line.prefab
+      CollectorGUID: dd0e2194a449b7d4ab9f90525546050a
+      CollectorType: 0
+      AddressRuleName: AddressByFileName
+      PackRuleName: PackDirectory
+      FilterRuleName: CollectAll
+      AssetTags: 
+    - CollectPath: Assets/GameMain/Prefabs/Node.prefab
+      CollectorGUID: 1eceb0d7b12654547b4d74506067bedb
+      CollectorType: 0
+      AddressRuleName: AddressByFileName
+      PackRuleName: PackDirectory
+      FilterRuleName: CollectAll
+      AssetTags: 
+    - CollectPath: Assets/GameMain/Prefabs/CursorNode.prefab
+      CollectorGUID: 1b6b8d0b7cbf37d4abd04bdb7a0900f3
+      CollectorType: 0
+      AddressRuleName: AddressByFileName
+      PackRuleName: PackDirectory
+      FilterRuleName: CollectAll
+      AssetTags: 

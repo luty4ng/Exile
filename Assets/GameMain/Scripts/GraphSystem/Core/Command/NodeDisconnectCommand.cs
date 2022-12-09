@@ -1,20 +1,23 @@
 using UnityEngine;
-using GameKit;
+using QuickKit;
 
-[System.Serializable]
-public class NodeDisconnectCommand : CommandBase<NodeConnectCommand>
+namespace GraphSystem
 {
-    public LineBase Line;
-    public NodeBase StartNode;
-    public NodeBase EndNode;
-    public override void Excute()
+    [System.Serializable]
+    public class NodeDisconnectCommand : CommandBase<NodeConnectCommand>
     {
-        StartNode.Connect(EndNode, Line);
-        EndNode.Connect(StartNode, Line);
-    }
+        public LineBase Line;
+        public NodeBase StartNode;
+        public NodeBase EndNode;
+        public override void Excute()
+        {
+            // StartNode.Connect(EndNode, Line);
+            // EndNode.Connect(StartNode, Line);
+        }
 
-    public override void Revoke()
-    {
+        public override void Revoke()
+        {
 
+        }
     }
 }

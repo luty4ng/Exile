@@ -184,6 +184,8 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
+  - name: Exp_Link
+    path: Assets/GameMain/Scenes/Exp_Link.unity
   - name: LinkingGame
     path: Assets/GameMain/Scenes/LinkingGame.unity
   - name: Default

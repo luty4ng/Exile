@@ -7,8 +7,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasRenderer))]
 public class UI_LineRenderer : Graphic
 {
-    public Vector2Int UnitGridSize;
-    [Range(5f, 20f)] public float Thickness = 10f;
+    public Vector2 UnitGridSize;
+    [Range(0.5f, 20f)] public float Thickness = 10f;
     [Range(16, 64)] public int CircleDetail = 32;
     public List<Vector2> Points = new List<Vector2>();
 
@@ -19,14 +19,22 @@ public class UI_LineRenderer : Graphic
     private float Radius;
     private int m_VerticeIndexOffset;
 
+    public void Setup(int width, int height, Vector2 cellSize)
+    {
+        this.width = width;
+        this.height = height;
+        this.UnitGridSize = cellSize;
+    }
+
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();
         m_VerticeIndexOffset = 0;
         Radius = Thickness / 2;
-        unitWidth = width / (float)UnitGridSize.x;
-        unitHeight = height / (float)UnitGridSize.y;
-
+        unitWidth = UnitGridSize.x;
+        unitHeight = UnitGridSize.y;
+        // unitWidth = width / UnitGridSize.x;
+        // unitHeight = height / UnitGridSize.y;
         if (Points.Count < 2)
             return;
 
@@ -95,5 +103,10 @@ public class UI_LineRenderer : Graphic
     {
         vh.AddTriangle(lineIndex + 0, lineIndex + 1, lineIndex + 2);
         vh.AddTriangle(lineIndex + 1, lineIndex + 3, lineIndex + 2);
+    }
+
+    public void AddPoint(Vector2 point)
+    {
+        Points.Add(point);
     }
 }
