@@ -184,6 +184,8 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
+  - name: GameKitDemo_UI
+    path: Assets/_GameWorkflow/GameKit/Demo/UI/GameKitDemo_UI.unity
   - name: LinkingGame
     path: Assets/GameMain/Scenes/LinkingGame.unity
   - name: Default

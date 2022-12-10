@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace GameKit.QuickCode {
+namespace QuickKit {
     public static class Statistic 
     {
         public static float Average(this List<int> input) {

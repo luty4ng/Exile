@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityGameKit.Runtime;
 
-namespace GameKit.QuickCode
+namespace QuickKit
 {
     [RequireComponent(typeof(CanvasGroup), typeof(Animator))]
     public class UIPanel : UIBehaviour

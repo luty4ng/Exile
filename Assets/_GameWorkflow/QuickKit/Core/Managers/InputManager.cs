@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityGameKit.Runtime;
 
-namespace GameKit.QuickCode
+namespace QuickKit
 {
     public class InputManager : SingletonBase<InputManager>
     {

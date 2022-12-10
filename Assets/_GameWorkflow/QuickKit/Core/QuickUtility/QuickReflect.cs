@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 
-namespace GameKit.QuickCode
+namespace QuickKit
 {
     public static class QuickReflect
     {

@@ -3,13 +3,8 @@ using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using LitJson;
-using UnityGameKit.Runtime;
 
-/// <summary>
-/// 非异步文件加载管理器
-/// </summary>
-
-namespace GameKit
+namespace QuickKit
 {
     public delegate void FileStreamAction<FileStream>(FileStream fileStream);
     public class SerializeManager : SingletonBase<SerializeManager>
@@ -19,8 +14,8 @@ namespace GameKit
         public SerializeManager()
         {
             binaryFormatter = new BinaryFormatter();
-            if (!Directory.Exists(Utility.Text.Format(TARGET_PATH, "/")))
-                Directory.CreateDirectory(Utility.Text.Format(TARGET_PATH, "/"));
+            if (!Directory.Exists(string.Format(TARGET_PATH, "/")))
+                Directory.CreateDirectory(string.Format(TARGET_PATH, "/"));
         }
 
         public T[] LoadJsonFromDirectory<T>(string fileName) where T : class

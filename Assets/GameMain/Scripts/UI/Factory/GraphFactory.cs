@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using GameKit;
+using QuickKit;
 using YooAsset;
 public class GraphFactory : SingletonBase<GraphFactory>
 {

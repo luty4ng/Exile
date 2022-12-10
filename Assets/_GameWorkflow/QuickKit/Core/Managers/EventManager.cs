@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using GameKit;
 
-namespace GameKit.QuickCode
+namespace QuickKit
 {
     public interface IEventInfo { }
     public class EventInfo<T> : IEventInfo

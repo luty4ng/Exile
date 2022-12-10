@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityGameKit.Runtime;
 
-namespace GameKit.QuickCode
+namespace QuickKit
 {
     public class AudioManager : SingletonBase<AudioManager>
     {
