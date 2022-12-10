@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public static class YooAssetUtility
 {
-    private static async UniTask InternalLoadAsset<T>(string assetName, int priority, UnityAction<T> successCallback) where T : UnityEngine.Object
+    private static async UniTask InternalLoadAsset<T>(string assetName, UnityAction<T> successCallback) where T : UnityEngine.Object
     {
         AssetOperationHandle handle = YooAssets.LoadAssetAsync<T>(assetName);
         UniTask uniTask = handle.ToUniTask();
@@ -18,9 +18,9 @@ public static class YooAssetUtility
         }
     }
 
-    public static async void LoadAsset<T>(string assetName, int priority, UnityAction<T> successCallback) where T : UnityEngine.Object
+    public static async void LoadAsset<T>(string assetName, UnityAction<T> successCallback) where T : UnityEngine.Object
     {
-        await InternalLoadAsset(assetName, priority, successCallback);
+        await InternalLoadAsset(assetName, successCallback);
     }
 
     public static void ForceUnloadAllAssets()

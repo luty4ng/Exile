@@ -1,6 +1,6 @@
-namespace GameKit
+namespace QuickKit
 {
-    public abstract class CommandBase<T> : IReference, ICommand
+    public abstract class CommandBase<T> : ICommand
     {
         protected readonly T target;
         protected CommandBase()
@@ -17,10 +17,9 @@ namespace GameKit
         public virtual void OnExitExcute() { }
         public virtual void OnEnterRevoke() { }
         public virtual void OnExitRevoke() { }
-        public virtual void Clear() { }
     }
 
-    public abstract class CommandBase : IReference, ICommand
+    public abstract class CommandBase : ICommand
     {
         protected CommandBase()
         {
@@ -32,6 +31,5 @@ namespace GameKit
         public virtual void OnExitExcute() { }
         public virtual void OnEnterRevoke() { }
         public virtual void OnExitRevoke() { }
-        public virtual void Clear() { }
     }
 }
