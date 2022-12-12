@@ -3,7 +3,7 @@ using GameKit.Event;
 using GameKit;
 using UnityGameKit.Runtime;
 
-public class GameSettings : MonoSingletonBase<GameSettings>
+public class GameSettings : QuickKit.MonoSingletonBase<GameSettings>
 {
     private const string Prefix = "GameSettings.";
     private void Start()

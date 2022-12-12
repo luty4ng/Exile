@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityGameKit.Runtime;
+using QuickKit;
 
 namespace QuickKit
 {
@@ -103,10 +103,6 @@ namespace QuickKit
                 if (components[i].transform.parent != this)
                     continue;
 
-                if (components[i].GetType() == typeof(UIData))
-                {
-                    (components[i] as UIData).Group = this;
-                }
                 string objName = components[i].gameObject.name;
                 if (uiComponet.ContainsKey(objName))
                     uiComponet[objName].Add(components[i]);

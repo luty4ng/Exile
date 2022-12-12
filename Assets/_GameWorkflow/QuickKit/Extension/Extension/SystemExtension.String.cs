@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Collections.Generic;
-namespace GameKit
+namespace QuickKit
 {
     public static partial class SystemExtension
     {

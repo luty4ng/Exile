@@ -2,8 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityGameKit.Runtime;
 using Cinemachine;
+using QuickKit;
 
-public class QuickCinemachineCamera : MonoSingletonBase<QuickCinemachineCamera>
+public class QuickCinemachineCamera : QuickKit.MonoSingletonBase<QuickCinemachineCamera>
 {
     public CinemachineVirtualCamera m_VirtualCamera;
     public Vector3 DefaultFollowPositionOffset;

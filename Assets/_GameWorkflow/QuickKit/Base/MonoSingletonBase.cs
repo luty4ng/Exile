@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityGameKit.Runtime
+namespace QuickKit
 {
     public abstract class MonoSingletonBase<T> : MonoBehaviour where T : MonoSingletonBase<T>
     {
@@ -42,10 +42,6 @@ namespace UnityGameKit.Runtime
         {
             Disable();
             DestroyImmediate(this.gameObject);
-        }
-        public static void Clear()
-        {
-            Current = null;
         }
     }
 }
