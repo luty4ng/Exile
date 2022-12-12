@@ -1,4 +1,4 @@
-namespace GameKit
+namespace QuickKit
 {
     public abstract class SingletonBase<T> where T : new()
     {

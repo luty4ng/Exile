@@ -1,6 +1,6 @@
 namespace QuickKit
 {
-    public abstract class CommandBase<T> : ICommand
+    public abstract class CommandBase<T> : IReference, ICommand
     {
         protected readonly T target;
         protected CommandBase()
@@ -12,14 +12,15 @@ namespace QuickKit
             this.target = target;
         }
         public abstract void Excute();
-        public abstract void Revoke();
+        public virtual void Revoke() { }
         public virtual void OnEnterExcute() { }
         public virtual void OnExitExcute() { }
         public virtual void OnEnterRevoke() { }
         public virtual void OnExitRevoke() { }
+        public virtual void Clear() { }
     }
 
-    public abstract class CommandBase : ICommand
+    public abstract class CommandBase : IReference, ICommand
     {
         protected CommandBase()
         {
@@ -31,5 +32,6 @@ namespace QuickKit
         public virtual void OnExitExcute() { }
         public virtual void OnEnterRevoke() { }
         public virtual void OnExitRevoke() { }
+        public virtual void Clear() { }
     }
 }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using GameKit;
+using QuickKit;
 
-namespace GameKit.QuickCode
+namespace QuickKit
 {
     public interface IEventInfo { }
     public class EventInfo<T> : IEventInfo

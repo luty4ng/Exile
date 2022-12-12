@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace GameKit.QuickCode
+namespace QuickKit
 {
     public class PoolData
     {

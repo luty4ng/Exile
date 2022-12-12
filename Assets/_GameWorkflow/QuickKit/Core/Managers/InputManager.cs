@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityGameKit.Runtime;
+using QuickKit;
 
-namespace GameKit.QuickCode
+namespace QuickKit
 {
     public class InputManager : SingletonBase<InputManager>
     {

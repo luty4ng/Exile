@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityGameKit.Runtime;
+using QuickKit;
 
-namespace GameKit.QuickCode
+namespace QuickKit
 {
     public class AudioManager : SingletonBase<AudioManager>
     {
