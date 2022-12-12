@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
 {
+    
+    public Camera fpsCam;
+    public Transform holdPivot;
     public bool IsLockCursor;
     public float MouseSensitivity = 10;
     public float WalkSpeed = 3;
@@ -22,7 +25,6 @@ public class FPSController : MonoBehaviour
     [SerializeField] private float pitch;
 
     CharacterController controller;
-    Camera cam;
     float smoothYaw;
     float smoothPitch;
     float yawSmoothV;
@@ -36,7 +38,6 @@ public class FPSController : MonoBehaviour
 
     void Start()
     {
-        cam = Camera.main;
         if (IsLockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -44,7 +45,7 @@ public class FPSController : MonoBehaviour
         }
         controller = GetComponent<CharacterController>();
         yaw = transform.eulerAngles.y;
-        pitch = cam.transform.localEulerAngles.x;
+        pitch = fpsCam.transform.localEulerAngles.x;
         smoothYaw = yaw;
         smoothPitch = pitch;
     }
@@ -95,24 +96,5 @@ public class FPSController : MonoBehaviour
                 verticalVelocity = JumpForce;
             }
         }
-
-        float mX = Input.GetAxisRaw("Mouse X");
-        float mY = Input.GetAxisRaw("Mouse Y");
-        float mMag = Mathf.Sqrt(mX * mX + mY * mY);
-        if (mMag > 5)
-        {
-            mX = 0;
-            mY = 0;
-        }
-
-        yaw += mX * MouseSensitivity;
-        pitch -= mY * MouseSensitivity;
-        pitch = Mathf.Clamp(pitch, PitchMinMax.x, PitchMinMax.y);
-        smoothPitch = Mathf.SmoothDampAngle(smoothPitch, pitch, ref pitchSmoothV, RotationSmoothTime);
-        smoothYaw = Mathf.SmoothDampAngle(smoothYaw, yaw, ref yawSmoothV, RotationSmoothTime);
-
-        transform.eulerAngles = Vector3.up * smoothYaw;
-        cam.transform.localEulerAngles = Vector3.right * smoothPitch;
-
     }
 }
