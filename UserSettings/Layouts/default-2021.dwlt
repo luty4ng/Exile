@@ -699,7 +699,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: -3.87, y: 1.3299999, z: 0.99399996}
+    m_Value: {x: -4.204, y: 1.084, z: 1.6199999}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 1
@@ -752,7 +752,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 10
     speed: 2
-    m_Value: 1.5998363
+    m_Value: 2.5835302
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1809,7 +1809,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -6574
+  m_LastSelectedObjectID: 33618
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
