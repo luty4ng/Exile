@@ -1,10 +1,16 @@
 using UnityEngine;
+using QuickKit;
+using UnityGameKit.Runtime;
 
-public abstract class NeedleFactory
+public class NeedleFactory : MonoSingletonBase<NeedleFactory>
 {
-    public abstract MarkerNeedle CreateMarker();
-    public abstract PhaserNeedle CreatePhaser();
-    public abstract InjectorNeedle CreateInjector();
-    public abstract TriggerNeedle CreateTrigger();
-
+    public MarkerNeedle MarkerPrototype;
+    public Transform NeedleParent;
+    public MarkerNeedle CreateMarker(Vector3 position, Vector3 direction, INeedleMaster master)
+    {
+        MarkerNeedle needle = Instantiate<MarkerNeedle>(MarkerPrototype, position, direction.ToQuaternion(), NeedleParent);
+        needle.Master = master;
+        needle.OnInstantiate();
+        return needle;
+    }
 }

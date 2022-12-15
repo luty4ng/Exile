@@ -24,7 +24,7 @@ namespace UnityGameKit.Runtime
                 }
             }
         }
-        
+
         public static T GetGetComponentInAllParents<T>(this GameObject go) where T : MonoBehaviour
         {
             GameObject parent = go.transform.parent.gameObject;

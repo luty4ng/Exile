@@ -25,7 +25,12 @@ namespace QuickKit
             get
             {
                 if (Current == null)
-                    Debug.LogError($"Mono Singleton Is Not Initialized.");
+                {
+                    Debug.LogWarning($"Mono Singleton Is Not Initialized in Mono life cycle. Try find it in hierarchy.");
+                    Current = FindObjectOfType<T>();
+                    if(Current == null)
+                        Debug.LogError($"Mono Singleton Instantiate failed.");
+                }
                 return Current;
             }
         }

@@ -184,5 +184,7 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
+  - name: Scanner
+    path: Assets/GameMain/Shaders/Scanner/Scanner.unity
   - name: Default
     path: Assets/GameMain/Scenes/Default.unity
