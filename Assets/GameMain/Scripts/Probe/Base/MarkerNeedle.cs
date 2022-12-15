@@ -16,7 +16,7 @@ public class MarkerNeedle : NeedleBase
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
         this.gameObject.SetActive(true);
-        scannerController.ScanDistance = 0;
+        scannerController.ResetScannerDistance();
         // Debug.Log(this.gameObject.activeInHierarchy);
         rb.velocity += transform.forward * Time.deltaTime * initSpeed;
         Master.SlaveNeedles.Add(this);
@@ -29,7 +29,7 @@ public class MarkerNeedle : NeedleBase
         Debug.Log("标记探针把需要的数据返回，并且回到了探枪中");
         Master.SlaveNeedles.Remove(this);
         EnableDetect = false;
-        scannerController.ScanDistance = 0;
+        scannerController.ResetScanner();
         Destroy(this.gameObject);
     }
 
@@ -61,11 +61,7 @@ public class MarkerNeedle : NeedleBase
             Vector3 faceDir = -other.contacts[0].normal;
             this.transform.LookAt(this.transform.position + faceDir);
             OnActivate();
-            Debug.Log(faceDir);
+            // Debug.Log(faceDir);
         }
     }
-
-
-
-
 }

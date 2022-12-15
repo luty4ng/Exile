@@ -100,7 +100,7 @@ public class FPSController : MonoBehaviour
         var targetEulers = fpsCam.transform.localEulerAngles;
         // targetEulers.x = Mathf.Clamp(targetEulers.x, -40, 40);
         var targetRotation = Quaternion.Euler(targetEulers.x, targetEulers.y, 0);
-        fpsHold.localRotation = Quaternion.Slerp(fpsHold.localRotation, targetRotation, 40f * Time.deltaTime);
+        fpsHold.localRotation = Quaternion.Slerp(fpsHold.localRotation, targetRotation, 30f * Time.deltaTime);
 
     }
 

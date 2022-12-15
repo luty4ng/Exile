@@ -50,4 +50,11 @@ public class ScannerController : MonoBehaviour
         }
     }
 
+    public void ResetScannerDistance() => m_CachedMaterial.SetFloat("_ScanDistance", 0);
+    public void ResetScannerPos() => m_CachedMaterial.SetVector("_WorldSpaceScannerPos", Vector3.zero);
+    public void ResetScanner()
+    {
+        ResetScannerDistance();
+        ResetScannerPos();
+    }
 }

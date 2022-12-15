@@ -31,11 +31,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _DepthSensitivity: 2
-    - _LeadSharp: 4.86
+    - _LeadSharp: 5
     - _NormalSensitivity: 0.1
     - _OUT: 1
-    - _ScanDistance: 1.98457
-    - _ScanWidth: 1
+    - _ScanDistance: 0
+    - _ScanWidth: 2
     - _Speed: 2.98
     - _StartTime: 0
     m_Colors:
