@@ -6,9 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
 {
-    
+
     public Camera fpsCam;
-    public Transform holdPivot;
+    public Transform fpsHold;
+    public CharacterController controller;
     public bool IsLockCursor;
     public float MouseSensitivity = 10;
     public float WalkSpeed = 3;
@@ -24,7 +25,7 @@ public class FPSController : MonoBehaviour
     [SerializeField] private float yaw;
     [SerializeField] private float pitch;
 
-    CharacterController controller;
+
     float smoothYaw;
     float smoothPitch;
     float yawSmoothV;
@@ -44,7 +45,7 @@ public class FPSController : MonoBehaviour
             Cursor.visible = false;
         }
         controller = GetComponent<CharacterController>();
-        yaw = transform.eulerAngles.y;
+        yaw = fpsCam.transform.localEulerAngles.y;
         pitch = fpsCam.transform.localEulerAngles.x;
         smoothYaw = yaw;
         smoothPitch = pitch;
@@ -52,7 +53,6 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
-
         if (Time.timeScale == 0)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -68,8 +68,48 @@ public class FPSController : MonoBehaviour
             }
         }
 
+        CalculateCamera();
+        CalculatePosition();
+        CalculateHold();
+    }
+
+    void CalculateCamera()
+    {
+        // Camera
+        float mX = Input.GetAxisRaw("Mouse X");
+        float mY = Input.GetAxisRaw("Mouse Y");
+        float mMag = Mathf.Sqrt(mX * mX + mY * mY);
+
+        if (mMag > 5)
+        {
+            mX = 0;
+            mY = 0;
+        }
+
+        yaw += mX * MouseSensitivity;
+        pitch -= mY * MouseSensitivity;
+        pitch = Mathf.Clamp(pitch, PitchMinMax.x, PitchMinMax.y);
+        smoothPitch = Mathf.SmoothDampAngle(smoothPitch, pitch, ref pitchSmoothV, RotationSmoothTime);
+        smoothYaw = Mathf.SmoothDampAngle(smoothYaw, yaw, ref yawSmoothV, RotationSmoothTime);
+
+        fpsCam.transform.localEulerAngles = Vector3.up * smoothYaw + Vector3.right * smoothPitch;
+    }
+
+    void CalculateHold()
+    {
+        var targetEulers = fpsCam.transform.localEulerAngles;
+        // targetEulers.x = Mathf.Clamp(targetEulers.x, -40, 40);
+        var targetRotation = Quaternion.Euler(targetEulers.x, targetEulers.y, 0);
+        fpsHold.localRotation = Quaternion.Slerp(fpsHold.localRotation, targetRotation, 40f * Time.deltaTime);
+
+    }
+
+    void CalculatePosition()
+    {
+        var forward = Vector3.Cross(fpsCam.transform.right, Vector3.up).normalized;
+        var right = Vector3.Cross(fpsCam.transform.forward, Vector3.up).normalized;
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Vector3 dir = new Vector3(input.x, 0, input.y).normalized;
+        Vector3 dir = -right * input.x + forward * input.y;
         Vector3 worldInputDir = transform.TransformDirection(dir);
 
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? RunSpeed : WalkSpeed;

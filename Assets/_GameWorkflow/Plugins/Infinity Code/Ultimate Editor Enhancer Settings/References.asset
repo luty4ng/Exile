@@ -184,29 +184,5 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
-  - name: GameKitDemo_UI
-    path: Assets/_GameWorkflow/GameKit/Demo/UI/GameKitDemo_UI.unity
-  - name: UFPSDemo
-    path: Assets/Opsive/UltimateCharacterController/Demo/UFPSDemo.unity
-  - name: Exp_Link
-    path: Assets/GameMain/Scenes/Exp_Link.unity
-  - name: GameLauncher
-    path: Assets/_GameWorkflow/GameKit/GameLauncher.unity
   - name: Default
     path: Assets/GameMain/Scenes/Default.unity
-  - name: LinkingGame
-    path: Assets/GameMain/Scenes/LinkingGame.unity
-  - name: Default
-    path: Assets/Scenes/Default.unity
-  - name: Default
-    path: Assets/_GameWorkflow/Template/Scenes/Default.unity
-  - name: Default
-    path: Assets/_GameWorkflow/QuickKit/Template/Scenes/Default.unity
-  - name: Default
-    path: Assets/_GameWorkflow/LutyKit/GameMainTemplate/Scenes/Default.unity
-  - name: GameKitDemo_Fsm
-    path: Assets/_GameWorkflow/GameKit/Demo/Fsm/GameKitDemo_Fsm.unity
-  - name: GameKitDemo_ObjectPool
-    path: Assets/_GameWorkflow/GameKit/Demo/ObjectPool/GameKitDemo_ObjectPool.unity
-  - name: GameKitDemo_TaskPool
-    path: Assets/_GameWorkflow/GameKit/Demo/TaskPool/GameKitDemo_TaskPool.unity
