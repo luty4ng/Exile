@@ -3,7 +3,7 @@ using UnityGameKit.Runtime;
 public class MarkerNeedle : NeedleBase
 {
     public ScannerController scannerController;
-    [Header("Param")]
+    [Header("Params")]
     public float initSpeed = 20f;
     public float detectSpeed = 10f;
     [Range(1, 10)] public float detectRange = 5f;
