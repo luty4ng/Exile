@@ -68,7 +68,7 @@ public class FPSController : MonoBehaviour
 
         CalculateCamera();
         CalculatePosition();
-        CalculateHold();
+        // CalculateHold();
     }
 
     void CalculateCamera()
