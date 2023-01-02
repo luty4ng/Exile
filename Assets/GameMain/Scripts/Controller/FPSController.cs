@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
 {
-
     public Camera fpsCam;
     public Transform fpsHold;
     public CharacterController controller;
@@ -22,9 +21,8 @@ public class FPSController : MonoBehaviour
     public float RotationSmoothTime = 0.1f;
     public Vector2 PitchMinMax = new Vector2(-40, 85);
     [Space]
-    [SerializeField] private float yaw;
-    [SerializeField] private float pitch;
-
+    private float yaw;
+    private float pitch;
 
     float smoothYaw;
     float smoothPitch;
@@ -46,7 +44,7 @@ public class FPSController : MonoBehaviour
         }
         controller = GetComponent<CharacterController>();
         yaw = fpsCam.transform.localEulerAngles.y;
-        pitch = fpsCam.transform.localEulerAngles.x;
+        pitch = this.transform.localEulerAngles.x;
         smoothYaw = yaw;
         smoothPitch = pitch;
     }
@@ -92,28 +90,28 @@ public class FPSController : MonoBehaviour
         smoothPitch = Mathf.SmoothDampAngle(smoothPitch, pitch, ref pitchSmoothV, RotationSmoothTime);
         smoothYaw = Mathf.SmoothDampAngle(smoothYaw, yaw, ref yawSmoothV, RotationSmoothTime);
 
-        fpsCam.transform.localEulerAngles = Vector3.up * smoothYaw + Vector3.right * smoothPitch;
+        fpsCam.transform.localEulerAngles = Vector3.right * smoothPitch;
+        this.transform.localEulerAngles = Vector3.up * smoothYaw;
     }
 
     void CalculateHold()
     {
-        var targetEulers = fpsCam.transform.localEulerAngles;
+        Vector3 targetEulers = new Vector3(fpsCam.transform.eulerAngles.x, fpsCam.transform.eulerAngles.y);
         // targetEulers.x = Mathf.Clamp(targetEulers.x, -40, 40);
         var targetRotation = Quaternion.Euler(targetEulers.x, targetEulers.y, 0);
-        fpsHold.localRotation = Quaternion.Slerp(fpsHold.localRotation, targetRotation, 30f * Time.deltaTime);
-
+        fpsHold.rotation = Quaternion.Slerp(fpsHold.rotation, targetRotation, 30f * Time.deltaTime);
     }
 
     void CalculatePosition()
     {
-        var forward = Vector3.Cross(fpsCam.transform.right, Vector3.up).normalized;
-        var right = Vector3.Cross(fpsCam.transform.forward, Vector3.up).normalized;
+        var forward = Vector3.Cross(this.transform.right, Vector3.up).normalized;
+        var right = Vector3.Cross(this.transform.forward, Vector3.up).normalized;
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         Vector3 dir = -right * input.x + forward * input.y;
-        Vector3 worldInputDir = transform.TransformDirection(dir);
+        // Vector3 worldInputDir = transform.TransformDirection(dir);
 
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? RunSpeed : WalkSpeed;
-        Vector3 targetVelocity = worldInputDir * currentSpeed;
+        Vector3 targetVelocity = dir * currentSpeed;
         velocity = Vector3.SmoothDamp(velocity, targetVelocity, ref smoothV, MoveSmoothTime);
 
         verticalVelocity -= Gravity * Time.deltaTime;
