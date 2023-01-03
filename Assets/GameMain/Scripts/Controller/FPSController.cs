@@ -1,29 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
 {
+
+    [Header("Basic")]
+    public bool IsLockCursor;
+
+    [Header("Reference")]
     public Camera fpsCam;
     public Transform fpsHold;
+    public Transform fpsCrouch;
     public CharacterController controller;
-    public bool IsLockCursor;
-    public float MouseSensitivity = 10;
-    public float WalkSpeed = 3;
-    public float RunSpeed = 6;
+
+    [Header("Movement")]
+    public float CrouchDst = 0.5f;
+    public float CrouchSpeed = 2;
+    public float WalkSpeed = 4;
+    public float RunSpeed = 8;
     public float JumpForce = 8;
     public float Gravity = 18;
     [Tooltip("The sensitivity between input and moving"), Range(0f, 0.25f)]
     public float MoveSmoothTime = 0.1f;
     [Tooltip("The sensitivity between input and rotating"), Range(0f, 0.25f)]
-    public float RotationSmoothTime = 0.1f;
-    public Vector2 PitchMinMax = new Vector2(-40, 85);
-    [Space]
-    private float yaw;
-    private float pitch;
+    public float RotationSmoothTime = 0.05f;
+    [Tooltip("The time for crouch animation"), Range(0.1f, 0.5f)]
+    public float CrouchSmoothTime = 0.3f;
 
+    [Header("Camera")]
+    public float MouseSensitivity = 10;
+    public Vector2 PitchMinMax = new Vector2(-40, 85);
+
+    [Space]
+    [Header("Status")]
+    float yaw;
+    float pitch;
     float smoothYaw;
     float smoothPitch;
     float yawSmoothV;
@@ -32,11 +47,15 @@ public class FPSController : MonoBehaviour
     Vector3 velocity;
     Vector3 smoothV;
 
-    bool jumping;
+    bool isJumping;
+    bool isCrouching;
+    bool isRunning;
+    bool isLeaning;
     float lastGroundedTime;
 
     void Start()
     {
+        isCrouching = false;
         if (IsLockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -69,6 +88,7 @@ public class FPSController : MonoBehaviour
         CalculateCamera();
         CalculatePosition();
         // CalculateHold();
+        CheckCrouch();
     }
 
     void CalculateCamera()
@@ -110,7 +130,13 @@ public class FPSController : MonoBehaviour
         Vector3 dir = -right * input.x + forward * input.y;
         // Vector3 worldInputDir = transform.TransformDirection(dir);
 
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? RunSpeed : WalkSpeed;
+        isRunning = Input.GetKey(KeyCode.LeftShift);
+        float currentSpeed = WalkSpeed;
+        if (isCrouching)
+            currentSpeed = CrouchSpeed;
+        else if (isRunning)
+            currentSpeed = RunSpeed;
+
         Vector3 targetVelocity = dir * currentSpeed;
         velocity = Vector3.SmoothDamp(velocity, targetVelocity, ref smoothV, MoveSmoothTime);
 
@@ -120,7 +146,7 @@ public class FPSController : MonoBehaviour
         var flags = controller.Move(velocity * Time.deltaTime);
         if (flags == CollisionFlags.Below)
         {
-            jumping = false;
+            isJumping = false;
             lastGroundedTime = Time.time;
             verticalVelocity = 0;
         }
@@ -128,11 +154,37 @@ public class FPSController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             float timeSinceLastTouchedGround = Time.time - lastGroundedTime;
-            if (controller.isGrounded || (!jumping && timeSinceLastTouchedGround < 0.15f))
+
+            if (isCrouching)
             {
-                jumping = true;
+                isCrouching = false;
+                fpsCrouch.transform.DOComplete();
+                fpsCrouch.transform.DOLocalMoveY(fpsCrouch.transform.localPosition.y + CrouchDst, CrouchSmoothTime);
+            }
+
+            if (controller.isGrounded || (!isJumping && timeSinceLastTouchedGround < 0.15f))
+            {
+                isJumping = true;
                 verticalVelocity = JumpForce;
             }
+        }
+    }
+
+    void CheckCrouch()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (!isCrouching)
+            {
+                fpsCrouch.transform.DOComplete();
+                fpsCrouch.transform.DOLocalMoveY(fpsCrouch.transform.localPosition.y - CrouchDst, CrouchSmoothTime);
+            }
+            else
+            {
+                fpsCrouch.transform.DOComplete();
+                fpsCrouch.transform.DOLocalMoveY(fpsCrouch.transform.localPosition.y + CrouchDst, CrouchSmoothTime);
+            }
+            isCrouching = !isCrouching;
         }
     }
 }
