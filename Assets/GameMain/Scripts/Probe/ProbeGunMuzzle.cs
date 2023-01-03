@@ -19,7 +19,7 @@ public class ProbeGunMuzzle : MonoBehaviour
     }
     public void ResetCorrection()
     {
-        Debug.Log("Reset");
+        // Debug.Log("Reset");
         this.transform.localRotation = m_DefaultDirection;
     }
 

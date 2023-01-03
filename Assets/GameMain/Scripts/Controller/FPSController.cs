@@ -15,6 +15,7 @@ public class FPSController : MonoBehaviour
     public Camera fpsCam;
     public Transform fpsHold;
     public Transform fpsCrouch;
+    public Transform LeanPivot;
     public CharacterController controller;
 
     [Header("Movement")]
@@ -30,6 +31,7 @@ public class FPSController : MonoBehaviour
     public float RotationSmoothTime = 0.05f;
     [Tooltip("The time for crouch animation"), Range(0.1f, 0.5f)]
     public float CrouchSmoothTime = 0.3f;
+    [Range(10f, 45f)] public float LeanAngle = 30f;
 
     [Header("Camera")]
     public float MouseSensitivity = 10;
@@ -50,7 +52,8 @@ public class FPSController : MonoBehaviour
     bool isJumping;
     bool isCrouching;
     bool isRunning;
-    bool isLeaning;
+    bool isRightLeaning;
+    bool isLeftLeaning;
     float lastGroundedTime;
 
     void Start()
@@ -89,6 +92,7 @@ public class FPSController : MonoBehaviour
         CalculatePosition();
         // CalculateHold();
         CheckCrouch();
+        CheckLean();
     }
 
     void CalculateCamera()
@@ -132,10 +136,14 @@ public class FPSController : MonoBehaviour
 
         isRunning = Input.GetKey(KeyCode.LeftShift);
         float currentSpeed = WalkSpeed;
-        if (isCrouching)
+        if (isCrouching && !isRunning)
             currentSpeed = CrouchSpeed;
-        else if (isRunning)
+
+        if (isRunning)
+        {
             currentSpeed = RunSpeed;
+            UnCrouch();
+        }
 
         Vector3 targetVelocity = dir * currentSpeed;
         velocity = Vector3.SmoothDamp(velocity, targetVelocity, ref smoothV, MoveSmoothTime);
@@ -154,13 +162,8 @@ public class FPSController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             float timeSinceLastTouchedGround = Time.time - lastGroundedTime;
+            UnCrouch();
 
-            if (isCrouching)
-            {
-                isCrouching = false;
-                fpsCrouch.transform.DOComplete();
-                fpsCrouch.transform.DOLocalMoveY(fpsCrouch.transform.localPosition.y + CrouchDst, CrouchSmoothTime);
-            }
 
             if (controller.isGrounded || (!isJumping && timeSinceLastTouchedGround < 0.15f))
             {
@@ -185,6 +188,47 @@ public class FPSController : MonoBehaviour
                 fpsCrouch.transform.DOLocalMoveY(fpsCrouch.transform.localPosition.y + CrouchDst, CrouchSmoothTime);
             }
             isCrouching = !isCrouching;
+        }
+    }
+
+    void UnCrouch()
+    {
+        if (isCrouching)
+        {
+            isCrouching = false;
+            fpsCrouch.transform.DOComplete();
+            fpsCrouch.transform.DOLocalMoveY(fpsCrouch.transform.localPosition.y + CrouchDst, CrouchSmoothTime);
+        }
+
+        // fpsCrouch.transform.DORotate();
+    }
+
+    void CheckLean()
+    {
+        if (Input.GetKey(KeyCode.E) && !isRightLeaning && !isLeftLeaning)
+        {
+            isRightLeaning = true;
+            LeanPivot.transform.DOComplete();
+            LeanPivot.transform.DOLocalRotate(LeanPivot.transform.localEulerAngles - new Vector3(0, 0, LeanAngle), 0.2f);
+        }
+        else if (Input.GetKeyUp(KeyCode.E) && isRightLeaning)
+        {
+            isRightLeaning = false;
+            LeanPivot.transform.DOComplete();
+            LeanPivot.transform.DOLocalRotate(LeanPivot.transform.localEulerAngles + new Vector3(0, 0, LeanAngle), 0.2f);
+        }
+
+        if (Input.GetKey(KeyCode.Q) && !isLeftLeaning && !isRightLeaning)
+        {
+            isLeftLeaning = true;
+            LeanPivot.transform.DOComplete();
+            LeanPivot.transform.DOLocalRotate(LeanPivot.transform.localEulerAngles + new Vector3(0, 0, LeanAngle), 0.2f);
+        }
+        else if (Input.GetKeyUp(KeyCode.Q) && isLeftLeaning)
+        {
+            isLeftLeaning = false;
+            LeanPivot.transform.DOComplete();
+            LeanPivot.transform.DOLocalRotate(LeanPivot.transform.localEulerAngles - new Vector3(0, 0, LeanAngle), 0.2f);
         }
     }
 }
